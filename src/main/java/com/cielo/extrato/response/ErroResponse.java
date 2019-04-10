@@ -1,32 +1,44 @@
 package com.cielo.extrato.response;
 
 public class ErroResponse {
+
+	private String titulo;
 	
-    private String codigoErro;
-	private String descricaoErro;
+	private Long status;
 	
-	public ErroResponse(String codigoErro, String descricaoErro) {
-		this.codigoErro = codigoErro;
-		this.descricaoErro = descricaoErro;
-	}
-
-	public String getCodigoErro() {
-		return codigoErro;
-	}
-
-	public void setCodigoErro(String codigoErro) {
-		this.codigoErro = codigoErro;
-	}
-
-	public String getDescricaoErro() {
-		return descricaoErro;
-	}
-
-	public void setDescricaoErro(String descricaoErro) {
-		this.descricaoErro = descricaoErro;
-	}
-
-
+	private Long timestamp;
 	
+	private String mensagemDesenvolvedor;
 
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public Long getStatus() {
+		return status;
+	}
+
+	public void setStatus(Long status) {
+		this.status = status;
+	}
+
+	public Long getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Long timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public String getMensagemDesenvolvedor() {
+		return mensagemDesenvolvedor;
+	}
+
+	public void setMensagemDesenvolvedor(String mensagemDesenvolvedor) {
+		this.mensagemDesenvolvedor = mensagemDesenvolvedor;
+	}
 }

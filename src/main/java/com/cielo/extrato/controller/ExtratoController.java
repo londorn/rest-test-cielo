@@ -1,7 +1,5 @@
 package com.cielo.extrato.controller;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cielo.extrato.domain.Lancamentos;
-import com.cielo.extrato.response.ErroResponse;
 import com.cielo.extrato.service.ExtratoService;
 
 import io.swagger.annotations.Api;
@@ -50,26 +47,19 @@ public class ExtratoController {
 	        @ApiResponse(code = 422, message = "422 UNPROCESSABLE ENTITY. Erro de validação."),
 	        @ApiResponse(code = 500, message = "500 INTERNAL SERVER ERROR. Um erro ocorreu em nossa API.")
 	})
-	
 	@GetMapping(value="/busca-extrato", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> buscaExtrato(){
+	public ResponseEntity<?> buscaExtrato() {
 		
 		Lancamentos controleLancamento = new Lancamentos();
 		
 		log.debug("Inicio buscaExtrato()");
 		
-    	try {
-    		
-    		controleLancamento = extratoService.buscarControleLancemento();
-    		
-		} catch (IOException e) {
-			log.debug("ERRO: " +e.getStackTrace()+" ");
-			return new ResponseEntity<ErroResponse>(new ErroResponse("500","Erro Inesperado"), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+    	controleLancamento = extratoService.buscarControleLancemento();
     	
     	log.debug("Fim buscaExtrato()");
     	
-		return new ResponseEntity<Lancamentos>(controleLancamento, HttpStatus.OK);
+    	return ResponseEntity.status(HttpStatus.OK).body(controleLancamento);
+
 	}
 	
 	
